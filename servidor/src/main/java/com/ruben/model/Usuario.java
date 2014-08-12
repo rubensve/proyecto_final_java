@@ -124,9 +124,18 @@ public class Usuario implements Serializable {
         return true;
     }
 
+    public Usuario(Integer idUsuario, String nombre, String apellidop, String apellidom, String rol) {
+        this.idUsuario = idUsuario;
+        this.nombre = nombre;
+        this.apellidop = apellidop;
+        this.apellidom = apellidom;
+        this.rol = rol;
+    }
+
+    
     @Override
     public String toString() {
-        return "com.ruben.model.Usuario[ idUsuario=" + idUsuario + " ]";
+        return idUsuario+" " + nombre+ " " + apellidop+" " +apellidom+ " " + rol;
     }
     
 }

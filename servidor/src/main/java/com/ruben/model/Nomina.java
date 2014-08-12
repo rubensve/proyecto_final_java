@@ -46,6 +46,21 @@ public class Nomina implements Serializable {
     public Nomina() {
     }
 
+    public Nomina(Integer idNomina, Float sueldo, Float saldo, Usuario idUsuario) {
+        this.idNomina = idNomina;
+        this.sueldo = sueldo;
+        this.saldo = saldo;
+        this.idUsuario = idUsuario;
+    }
+
+    public Nomina(Float sueldo, Float saldo, Usuario idUsuario) {
+        this.sueldo = sueldo;
+        this.saldo = saldo;
+        this.idUsuario = idUsuario;
+    }
+    
+    
+
     public Nomina(Integer idNomina) {
         this.idNomina = idNomina;
     }
@@ -104,7 +119,7 @@ public class Nomina implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ruben.model.Nomina[ idNomina=" + idNomina + " ]";
+        return idNomina + " " + idUsuario + " " + sueldo+ " " + saldo;
     }
     
 }

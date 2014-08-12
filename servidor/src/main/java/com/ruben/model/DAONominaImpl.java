@@ -18,36 +18,42 @@ import org.hibernate.Query;
  */
 public class DAONominaImpl extends DAO {
     
-    public void agregarNomina(Nomina empleado) {
-    begin();
-    getSession().save(empleado);
-    commit();
-    close();
-    }
     
-    public ArrayList<Nomina> buscarTodasNominas() {
-        begin();
-        Criteria c=getSession().createCriteria(Nomina.class);
-        ArrayList<Nomina> empleados = (ArrayList<Nomina>)c.list();
-        commit();
-        close();
-        return empleados; 
-    }
+    public static void insertar(Nomina nomina){
+begin();
+getSession().save(nomina);
+commit();
+close();
+}
+public static void actualizar(Nomina nomina){
+begin();
+getSession().update(nomina);
+commit();
+close();
+}
+public static void borrar(Nomina nomina){
+begin();
+getSession().delete(nomina);
+commit();
+close();
+}
+public static ArrayList<Nomina> buscarTodos(){
+begin();
+Criteria c = getSession().createCriteria(Usuario.class);
+ArrayList<Nomina> nom = (ArrayList<Nomina>) c.list();
+commit();
+close();
+return nom;
+}
+
+public static Usuario buscarId(int id){
+begin();
+Query q = getSession().createQuery("FROM Usuario WHERE id_usuario = :id");
+q.setInteger("id", id);
+Usuario usuario = (Usuario) q.uniqueResult();
+commit();
+close();
+return usuario;
+}
     
-    public void borrarNomina(Nomina n){
-            begin();
-             getSession().delete(n);
-            commit();
-            close();
-    }   
-    
-  public Nomina buscarPorId(int id_nomina){
-     begin();
-     Query q = getSession().createQuery("from Nomina where id_nomina = :id_nomina");
-        q.setInteger("id_nomina",id_nomina);
-        Nomina n = (Nomina)q.uniqueResult();
-        commit();
-        close();
-        return n;  
-  } 
 }

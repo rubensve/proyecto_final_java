@@ -38,5 +38,27 @@ ObjectMapper mapper = new ObjectMapper();
 return mapper.writeValueAsString(DAOUsuarioImpl.buscarTodos());
 }
 
+@RequestMapping(value = "/usuario/{id}", method = RequestMethod.GET, headers = {"Accept=text/html"})
+public @ResponseBody String buscarPorId(@PathVariable int id){
+return DAOUsuarioImpl.buscarId(id).toString();
+}
+
+@RequestMapping(value = "/usuario/{nombre}/{apellidop}/{apellidom}/{rol}/{id}",method = RequestMethod.PUT, headers = {"Accept=text/html"})
+public @ResponseBody String actualizar(@PathVariable String nombre,@PathVariable String apellidop, 
+        @PathVariable String apellidom, @PathVariable String rol, @PathVariable int id ){
+DAOUsuarioImpl.actualizar(new Usuario(id, nombre, apellidop, apellidom, rol));
+return "EL usuario se ha actualizado correctamente";
+}
+
+@RequestMapping(value = "/usuario/{nombre}/{apellidop}/{apellidom}/{rol}/{id}", method = RequestMethod.DELETE, headers = {"Accept=text/html"})
+public @ResponseBody String eliminar(@PathVariable String nombre,@PathVariable String apellidop, 
+        @PathVariable String apellidom, @PathVariable String rol, @PathVariable int id ){
+try {
+DAOUsuarioImpl.borrar(new Usuario(id, nombre, apellidop, apellidom, rol));
+return "Usuario eliminado correctamente";
+} catch (Exception e) {
+return "Usuario no encontrado";
+}
     }
+}
 

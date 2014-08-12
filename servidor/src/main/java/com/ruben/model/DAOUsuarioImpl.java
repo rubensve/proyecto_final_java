@@ -42,14 +42,15 @@ commit();
 close();
 return usu;
 }
+
 public static Usuario buscarId(int id){
 begin();
-Query q = getSession().createQuery("FROM usuario WHERE id_usuario = :id");
+Query q = getSession().createQuery("FROM Usuario WHERE id_usuario = :id");
 q.setInteger("id", id);
-Usuario usu = (Usuario) q.uniqueResult();
+Usuario usuario = (Usuario) q.uniqueResult();
 commit();
 close();
-return usu;
+return usuario;
 }
     
 }
