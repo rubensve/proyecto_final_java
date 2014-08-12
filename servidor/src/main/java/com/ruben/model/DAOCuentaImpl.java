@@ -18,37 +18,42 @@ import org.hibernate.Query;
  */
 public class DAOCuentaImpl extends DAO{
     
-    public void agregarCuenta(Cuenta cuenta) {
-    begin();
-    getSession().save(cuenta);
-    commit();
-    close();
-    }
     
-    public ArrayList<Cuenta> buscarTodasCuentas() {
-        begin();
-        Criteria c=getSession().createCriteria(Cuenta.class);
-        ArrayList<Cuenta> cuentas = (ArrayList<Cuenta>)c.list();
-        commit();
-        close();
-        return cuentas; 
-    }
-    
-    public void borrarCuenta(Cuenta c){
-            begin();
-             getSession().delete(c);
-            commit();
-            close();
-    }   
-    
-  public Cuenta buscarPorId(int id_cuenta){
-     begin();
-     Query q = getSession().createQuery("from Cuenta where id_cuenta = :id_cuenta");
-        q.setInteger("id_cuenta",id_cuenta);
-        Cuenta c = (Cuenta)q.uniqueResult();
-        commit();
-        close();
-        return c;  
-  } 
+public static void insertar(Cuenta cuenta){
+begin();
+getSession().save(cuenta);
+commit();
+close();
+}
+public static void actualizar(Cuenta cuenta){
+begin();
+getSession().update(cuenta);
+commit();
+close();
+}
+public static void borrar(Cuenta cuenta){
+begin();
+getSession().delete(cuenta);
+commit();
+close();
+}
+public static ArrayList<Cuenta> buscarTodos(){
+begin();
+Criteria c = getSession().createCriteria(Cuenta.class);
+ArrayList<Cuenta> cue = (ArrayList<Cuenta>) c.list();
+commit();
+close();
+return cue;
+}
+
+public static Cuenta buscarId(int id){
+begin();
+Query q = getSession().createQuery("FROM Cuenta WHERE id_cuenta = :id");
+q.setInteger("id", id);
+Cuenta cuenta = (Cuenta) q.uniqueResult();
+commit();
+close();
+return cuenta;
+}
     
 }

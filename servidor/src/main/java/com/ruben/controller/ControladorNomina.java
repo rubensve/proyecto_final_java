@@ -21,8 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class ControladorNomina {
  
 @RequestMapping (value = "/nomina/{sueldo}/{saldo}/{id_usuario}", method = RequestMethod.GET, headers = {"Accept=text/html"})
-public @ResponseBody String insertar(@PathVariable int id_nomina,
-@PathVariable float sueldo, @PathVariable float saldo, @PathVariable int id_usuario){
+public @ResponseBody String insertar(@PathVariable float sueldo, @PathVariable float saldo, @PathVariable int id_usuario){
 try {
 DAONominaImpl.insertar(new Nomina(sueldo, saldo, new Usuario(id_usuario)));
 return "Nomina insertada correctamente";
@@ -41,7 +40,7 @@ return "Nomina actualizada correctamente";
 return "Error al actualizar la nomina";
 }
 }
-@RequestMapping (value = "/productos/{id}", method = RequestMethod.DELETE, headers = {"Accept=text/html"})
+@RequestMapping (value = "/nomina/{id}", method = RequestMethod.DELETE, headers = {"Accept=text/html"})
 public @ResponseBody String eliminar(@PathVariable int id_nomina){
 try {
 DAONominaImpl.borrar(new Nomina(id_nomina));
@@ -50,10 +49,10 @@ return "La nomina con id" + id_nomina + "se ha eliminado";
 return "Error al borrar la nomina buscada";
 }
 }
-@RequestMapping (value = "/nomina", method = RequestMethod.GET, headers = {"Accept=Application/jason"})
+@RequestMapping (value = "/nomina", method = RequestMethod.GET, headers = {"Accept=Application/json"})
 public @ResponseBody String buscarTodos () throws IOException{
-ObjectMapper mapper = new ObjectMapper();
-return mapper.writeValueAsString(DAONominaImpl.buscarTodos());
+ObjectMapper mapper1 = new ObjectMapper();
+return mapper1.writeValueAsString(DAONominaImpl.buscarTodos());
 }
 @RequestMapping (value = "/nomina/{id}", method = RequestMethod.GET, headers = {"Accept=text/html"})
 public @ResponseBody String buscarPorId (@PathVariable int id){

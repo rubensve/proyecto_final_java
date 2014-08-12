@@ -39,21 +39,21 @@ close();
 }
 public static ArrayList<Nomina> buscarTodos(){
 begin();
-Criteria c = getSession().createCriteria(Usuario.class);
+Criteria c = getSession().createCriteria(Nomina.class);
 ArrayList<Nomina> nom = (ArrayList<Nomina>) c.list();
 commit();
 close();
 return nom;
 }
 
-public static Usuario buscarId(int id){
+public static Nomina buscarId(int id){
 begin();
-Query q = getSession().createQuery("FROM Usuario WHERE id_usuario = :id");
+Query q = getSession().createQuery("FROM Nomina WHERE id_nomina = :id");
 q.setInteger("id", id);
-Usuario usuario = (Usuario) q.uniqueResult();
+Nomina nomina = (Nomina) q.uniqueResult();
 commit();
 close();
-return usuario;
+return nomina;
 }
     
 }

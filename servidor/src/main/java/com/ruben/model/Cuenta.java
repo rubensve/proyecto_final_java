@@ -44,6 +44,19 @@ public class Cuenta implements Serializable {
     public Cuenta() {
     }
 
+    public Cuenta(Integer idCuenta, Float totalVenta, Usuario idUsuario) {
+        this.idCuenta = idCuenta;
+        this.totalVenta = totalVenta;
+        this.idUsuario = idUsuario;
+    }
+
+    
+    public Cuenta(Float totalVenta, Usuario idUsuario) {
+        this.totalVenta = totalVenta;
+        this.idUsuario = idUsuario;
+    }
+
+    
     public Cuenta(Integer idCuenta) {
         this.idCuenta = idCuenta;
     }
@@ -94,7 +107,7 @@ public class Cuenta implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ruben.model.Cuenta[ idCuenta=" + idCuenta + " ]";
+        return "Numero de cuenta " + idCuenta + " ,Informacion del vendedor ,Id usuario:" + idUsuario;
     }
     
 }
